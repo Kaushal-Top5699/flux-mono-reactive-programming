@@ -86,4 +86,38 @@ public class FluxAndMonoServiceTest {
                 .expectNext(List.of("A", "L", "E", "X"))
                 .verifyComplete();
     }
+
+    @Test
+    void exploreConcat() {
+        var result = FluxAndMono.exploreConcat();
+        StepVerifier.create(result)
+                .expectNext("A", "B", "C", "D", "E", "F")
+                .verifyComplete();
+
+    }
+
+    @Test
+    void exploreConcatWith() {
+        var result = FluxAndMono.exploreConcatWith();
+        StepVerifier.create(result)
+                .expectNext("A", "B", "C", "D", "E", "F")
+                .verifyComplete();
+
+    }
+
+    @Test
+    void exploreConcatWithMono() {
+        var result = FluxAndMono.exploreConcatWithMono();
+        StepVerifier.create(result)
+                .expectNext("B", "C", "D", "E", "F", "G", "A")
+                .verifyComplete();
+    }
+
+    @Test
+    void exploreMergeWithMono() {
+        var result = FluxAndMono.exploreMergeWith();
+        StepVerifier.create(result)
+                .expectNext("A", "B", "C", "D")
+                .verifyComplete();
+    }
 }
